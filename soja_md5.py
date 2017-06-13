@@ -5,15 +5,14 @@ import os
 import sys
 
 
-def get_str_dd5(string):
+def get_str_md5(string):
     """
     一个字符串的MD5值
     返回一个字符串的MD5值
     """
     m0 = hashlib.md5()
-    m0.update(string)
+    m0.update(string.encode('utf-8'))
     result = m0.hexdigest()
-    print(result)
     return result
 
 
@@ -44,7 +43,6 @@ def get_file_sha1(file_path):
         sha1obj = hashlib.sha1()
         sha1obj.update(f.read())
         hash_o = sha1obj.hexdigest()
-        print(hash_o)
         return hash_o
 
 
@@ -57,7 +55,6 @@ def get_file_md5(file_path):
         md5obj = hashlib.md5()
         md5obj.update(f.read())
         hash_o = md5obj.hexdigest()
-        print(hash_o)
         return hash_o
 
 
