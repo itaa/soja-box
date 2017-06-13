@@ -69,6 +69,5 @@ if __name__ == "__main__":
                 get_file_md5(hash_file)
         else:
             get_file_md5(hash_file)
-            # raw_input("pause")
     else:
         print("no filename")
