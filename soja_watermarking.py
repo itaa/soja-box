@@ -25,7 +25,7 @@ def shuffle_mark_image(mark_image, original_image, random_tuple):
     :param mark_image:
     :param original_image:
     :param random_tuple:
-    :return:shuffle_mark:
+    :return:shuffle_mark
     """
 
     origin_shape = original_image.shape
