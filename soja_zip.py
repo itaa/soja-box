@@ -84,20 +84,28 @@ def unzip_dir(zipfilename, unzipdirname):
     # Start extract files ...
     srcZip = zipfile.ZipFile(fullzipfilename, "r")
     for eachfile in srcZip.namelist():
-        print("Unzip file %s ..." % eachfile)
+        # 中文文件名乱码问题的解决
+        try:
+            # 使用cp437对文件名进行解码还原
+            name = eachfile.encode('cp437')
+            # win下一般使用的是gbk编码
+            name = name.decode("utf-8")
+        except:
+            # 如果已被正确识别为utf8编码时则不需再编码
+            pass
+        print("Unzip file %s ..." % name)
 
-        eachfilename = os.path.normpath(os.path.join(fullunzipdirname, eachfile))
+        eachfilename = os.path.normpath(os.path.join(fullunzipdirname, name))
         eachdirname = os.path.dirname(eachfilename)
         # 如果是路径就继续
-        if eachfile[-1] is '/' or eachfile[-1] is '\\':
-            eachfilename = eachfilename + eachfile[-1]
+        if name[-1] is '/' or name[-1] is '\\':
+            eachfilename = eachfilename + name[-1]
             if not os.path.exists(eachfilename):
                 os.makedirs(eachfilename)
             continue
 
         if not os.path.exists(eachdirname):
             os.makedirs(eachdirname)
-
 
         fd = open(eachfilename, "wb")
         fd.write(srcZip.read(eachfile))
