@@ -92,7 +92,7 @@ def unzip_dir(zipfilename, unzipdirname):
             name = name.decode("utf-8")
         except:
             # 如果已被正确识别为utf8编码时则不需再编码
-            pass
+            name = eachfile
         print("Unzip file %s ..." % name)
 
         eachfilename = os.path.normpath(os.path.join(fullunzipdirname, name))
