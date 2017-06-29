@@ -34,7 +34,7 @@ def __get_big_file_md5(file_name):
     return hash_o.hexdigest()
 
 
-def __get_file_sha1(file_path):
+def get_file_sha1(file_path):
     """
     文件的sha1值
     返回一个文件的sha1值
