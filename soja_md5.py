@@ -5,7 +5,7 @@ import os
 import sys
 
 
-def get_str_md5(string):
+def __get_str_md5(string):
     """
     一个字符串的MD5值
     返回一个字符串的MD5值
@@ -16,7 +16,7 @@ def get_str_md5(string):
     return result
 
 
-def get_big_file_md5(file_name):
+def __get_big_file_md5(file_name):
     """
     较大文件的MD5值
     返回一个较大文件的MD5值
@@ -34,7 +34,7 @@ def get_big_file_md5(file_name):
     return hash_o.hexdigest()
 
 
-def get_file_sha1(file_path):
+def __get_file_sha1(file_path):
     """
     文件的sha1值
     返回一个文件的sha1值
@@ -46,7 +46,7 @@ def get_file_sha1(file_path):
         return hash_o
 
 
-def get_file_md5(file_path):
+def __get_file_md5(file_path):
     """
     文件的md5值
     返回一个文件的md5值
@@ -58,6 +58,24 @@ def get_file_md5(file_path):
         return hash_o
 
 
+def md5(str, mode='S'):
+    """
+    获取MD5方法
+    :param str: 待hash的字符串，或者是文件的路径，
+                如果是文件路径的时候需要设置mode='F'
+    :param mode: 模式，'S', 获取字符串的MD5
+                'F', 传入的str需要是文件的路径
+                'B', 大文件的MD5,传入的str需要是文件的路径
+    :return: 32位小写hash值
+    """
+    if mode.upper() == 'S':
+        return __get_str_md5(str)
+    if mode.upper() == 'F':
+        return __get_file_md5(str)
+    if mode.upper() == 'B':
+        return __get_big_file_md5(str)
+
+
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         hash_file = sys.argv[1]
@@ -66,8 +84,8 @@ if __name__ == "__main__":
             if not os.path.exists(hash_file):
                 print("cannot found file")
             else:
-                get_file_md5(hash_file)
+                md5(hash_file, mode='F')
         else:
-            get_file_md5(hash_file)
+            md5(hash_file, mode='F')
     else:
         print("no filename")
