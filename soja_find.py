@@ -17,5 +17,5 @@ def find_files(path, types):
     return matches
 
 if __name__ == '__main__':
-    my_python_files = find_files('./', ['*.py'])
-    print(my_python_files)
+    my_python_files = find_files('./', ['*.php', '*.html'])
+    print(len(my_python_files))
