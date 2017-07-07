@@ -52,7 +52,6 @@ if __name__ == '__main__':
     print(how_many_days())
     numbers = [1, 3, 5, 7, 9]
     kv = {'kind': 'sum', 'ignore_max': False}
-
     print(cal_num(*numbers, **kv))
 
 
