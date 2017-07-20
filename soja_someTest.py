@@ -28,6 +28,11 @@ def factors(integer=30):
 
 
 def cal_num(*numbers, **kv):
+    """
+    :param numbers:
+    :param kv:
+    :return:
+    """
     if 'kind' in kv:
         kind_value = kv.get('kind')
 
