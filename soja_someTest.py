@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import cv2
 
 def how_many_days(other_day='2019-1-1'):
     """
@@ -50,6 +50,15 @@ def cal_num(*numbers, **kv):
         return result
     if kind_value == 'avg':
         return result / len(numbers)
+
+def cv_test(original_image_name):
+    with open(original_image_name) as f:
+        img = cv2.imdecode(f, 1)
+        img2 = cv2.imread(original_image_name)
+        if img == img2:
+            print("yes you are right")
+        else:
+            print("can not do this")
 
 
 if __name__ == '__main__':

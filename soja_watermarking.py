@@ -125,14 +125,8 @@ if __name__ == "__main__":
     watermark_image = './imgs/pnrmark.png'
     alpha = 1.0
     output_size = (176, 176)
-    # add_watermarking(original_image_name, watermark_image, output_image_name, output_size=output_size)
-    with open(original_image_name) as f:
-        img = cv2.imdecode(f, 1)
-        img2 = cv2.imread(original_image_name)
-        if img == img2:
-            print("yes you are right")
-        else:
-            print("can not do this")
+    add_watermarking(original_image_name, watermark_image, output_image_name, output_size=output_size)
+
 
 
 
