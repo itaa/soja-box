@@ -127,7 +127,3 @@ if __name__ == "__main__":
     output_size = (176, 176)
     add_watermarking(original_image_name, watermark_image, output_image_name, output_size=output_size)
 
-
-
-
-
