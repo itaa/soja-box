@@ -67,6 +67,9 @@ def md5(str, mode='S'):
                 'F', 传入的str需要是文件的路径
                 'B', 大文件的MD5,传入的str需要是文件的路径
     :return: 32位小写hash值
+    :param str:
+    :param mode:
+    :return:
     """
     if mode.upper() == 'S':
         return __get_str_md5(str)
