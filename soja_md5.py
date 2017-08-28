@@ -34,18 +34,6 @@ def __get_big_file_md5(file_name):
     return hash_o.hexdigest()
 
 
-def get_file_sha1(file_path):
-    """
-    文件的sha1值
-    返回一个文件的sha1值
-    """
-    with open(file_path, 'rb') as f:
-        sha1obj = hashlib.sha1()
-        sha1obj.update(f.read())
-        hash_o = sha1obj.hexdigest()
-        return hash_o
-
-
 def __get_file_md5(file_path):
     """
     文件的md5值
@@ -58,7 +46,30 @@ def __get_file_md5(file_path):
         return hash_o
 
 
-def md5(str, mode='S'):
+def __get_str_sha1(string):
+    """
+    一个字符串的sha1值
+    返回一个字符串的sha1值
+    """
+    sha1obj = hashlib.md5()
+    sha1obj.update(string.encode('utf-8'))
+    result = sha1obj.hexdigest()
+    return result
+
+
+def __get_file_sha1(file_path):
+    """
+    文件的sha1值
+    返回一个文件的sha1值
+    """
+    with open(file_path, 'rb') as f:
+        sha1obj = hashlib.sha1()
+        sha1obj.update(f.read())
+        hash_o = sha1obj.hexdigest()
+        return hash_o
+
+
+def md5(string, mode='S'):
     """
     获取MD5方法
     :param str: 待hash的字符串，或者是文件的路径，
@@ -72,11 +83,29 @@ def md5(str, mode='S'):
     :return:
     """
     if mode.upper() == 'S':
-        return __get_str_md5(str)
+        return __get_str_md5(string)
     if mode.upper() == 'F':
-        return __get_file_md5(str)
+        return __get_file_md5(string)
     if mode.upper() == 'B':
-        return __get_big_file_md5(str)
+        return __get_big_file_md5(string)
+
+
+def sha1(string, mode='S'):
+    """
+    获取SHA1方法
+    :param string: 待hash的字符串，或者是文件的路径，
+                如果是文件路径的时候需要设置mode='F'
+    :param mode: 模式，'S', 获取字符串的SHA1
+                'F', 传入的str需要是文件的路径
+    :return: 32位小写hash值
+    :param string:
+    :param mode:
+    :return:
+    """
+    if mode.upper() == 'S':
+        return __get_str_sha1(string)
+    if mode.upper() == 'F':
+        return __get_file_sha1(string)
 
 
 if __name__ == "__main__":
