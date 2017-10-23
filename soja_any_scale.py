@@ -58,6 +58,7 @@ if __name__ == "__main__":
     scale2 = 17
     print("{} 进制的 {} 转换为 {} 进制 为：{}".format(scale1, value, scale2, Scale.any_scale(scale1, value, scale2)))
     print('结束')
+    # test my win git
 
 
 
