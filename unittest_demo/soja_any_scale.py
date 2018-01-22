@@ -16,7 +16,7 @@ class Scale(object):
             weight = scale * weight
         return n_value * weight
 
-    # s cale进制的值value转为对应10进制的值
+    # scale进制的值value转为对应10进制的值
     @staticmethod
     def n_2_decimal(value_, scale):
         sum_ = 0
@@ -49,16 +49,3 @@ class Scale(object):
         fin_value.reverse()
         fin_value = ''.join([str(x) for x in fin_value])
         return fin_value
-
-
-if __name__ == "__main__":
-    print('开始')
-    scale1 = 10
-    value = 1188
-    scale2 = 17
-    print("{} 进制的 {} 转换为 {} 进制 为：{}".format(scale1, value, scale2, Scale.any_scale(scale1, value, scale2)))
-    print('结束')
-
-
-
-

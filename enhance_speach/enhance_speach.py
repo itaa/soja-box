@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import numpy as np
 import wave
-import soja_nextpow2
+import nextpow2
 import math
 
 # 打开WAV文档
-f = wave.open("filename.wav")
+f = wave.open("input_file.wav")
 # 读取格式信息
 # (nchannels, sampwidth, framerate, nframes, comptype, compname)
 params = f.getparams()
@@ -32,7 +32,7 @@ win = np.hamming(len_)
 winGain = len2 / sum(win)
 
 # Noise magnitude calculations - assuming that the first 5 frames is noise/silence
-nFFT = 2 * 2 ** (soja_nextpow2.nextpow2(len_))
+nFFT = 2 * 2 ** (nextpow2.nextpow2(len_))
 noise_mean = np.zeros(nFFT)
 
 j = 0
@@ -120,7 +120,7 @@ for n in range(0, Nframes):
         x_old = xi[0 + len1:len_]
         k = k + len2
 # 保存文件
-wf = wave.open('outfile.wav', 'wb')
+wf = wave.open('en_outfile.wav', 'wb')
 # 设置参数
 wf.setparams(params)
 # 设置波形文件 .tostring()将array转换为data
