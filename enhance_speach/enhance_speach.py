@@ -17,10 +17,10 @@ f.close()
 # 将波形数据转换为数组
 x = np.fromstring(str_data, dtype=np.short)
 # 计算参数
-len_ = 20 * fs // 1000
-PERC = 50
-len1 = len_ * PERC // 100
-len2 = len_ - len1
+len_ = 20 * fs // 1000 # 样本中帧的大小
+PERC = 50 # 窗口重叠占帧的百分比
+len1 = len_ * PERC // 100  # 重叠窗口
+len2 = len_ - len1   # 非重叠窗口
 # 设置默认参数
 Thres = 3
 Expnt = 2.0
