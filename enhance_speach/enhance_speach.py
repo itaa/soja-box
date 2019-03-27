@@ -105,20 +105,20 @@ for n in range(0, Nframes):
         # 用估计出来的噪声信号表示下限值
         sub_speech[z] = beta * noise_mu[z] ** Expnt
         # --- implement a simple VAD detector --------------
-        if SNRseg < Thres:  # Update noise spectrum
-            noise_temp = G * noise_mu ** Expnt + (1 - G) * sig ** Expnt  # 平滑处理噪声功率谱
-            noise_mu = noise_temp ** (1 / Expnt)  # 新的噪声幅度谱
-        # flipud函数实现矩阵的上下翻转，是以矩阵的“水平中线”为对称轴
-        # 交换上下对称元素
-        sub_speech[nFFT // 2 + 1:nFFT] = np.flipud(sub_speech[1:nFFT // 2])
-        x_phase = (sub_speech ** (1 / Expnt)) * (np.array([math.cos(x) for x in theta]) + img * (np.array([math.sin(x) for x in theta])))
-        # take the IFFT
+    if SNRseg < Thres:  # Update noise spectrum
+        noise_temp = G * noise_mu ** Expnt + (1 - G) * sig ** Expnt  # 平滑处理噪声功率谱
+        noise_mu = noise_temp ** (1 / Expnt)  # 新的噪声幅度谱
+    # flipud函数实现矩阵的上下翻转，是以矩阵的“水平中线”为对称轴
+    # 交换上下对称元素
+    sub_speech[nFFT // 2 + 1:nFFT] = np.flipud(sub_speech[1:nFFT // 2])
+    x_phase = (sub_speech ** (1 / Expnt)) * (np.array([math.cos(x) for x in theta]) + img * (np.array([math.sin(x) for x in theta])))
+    # take the IFFT
 
-        xi = np.fft.ifft(x_phase).real
-        # --- Overlap and add ---------------
-        xfinal[k-1:k + len2 - 1] = x_old + xi[0:len1]
-        x_old = xi[0 + len1:len_]
-        k = k + len2
+    xi = np.fft.ifft(x_phase).real
+    # --- Overlap and add ---------------
+    xfinal[k-1:k + len2 - 1] = x_old + xi[0:len1]
+    x_old = xi[0 + len1:len_]
+    k = k + len2
 # 保存文件
 wf = wave.open('en_outfile.wav', 'wb')
 # 设置参数
